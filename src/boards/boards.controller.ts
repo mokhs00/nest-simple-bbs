@@ -6,7 +6,7 @@ import { CreateBoardRequest } from './model/create-board.dto';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(private boardsService: BoardsService) {}
+  constructor(private boardsService: BoardsService) { }
 
   @Get()
   getAllBoards(): Board[] {
@@ -15,6 +15,6 @@ export class BoardsController {
 
   @Post()
   createBoard(@Body() body: CreateBoardRequest): Board {
-    return this.boardsService.createBoard(body.title, body.description);
+    return this.boardsService.createBoard(body);
   }
 }
