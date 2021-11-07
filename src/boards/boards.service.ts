@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { v1 as uuid } from 'uuid';
 import { Board, BoardStatus } from './model/boards.model';
-import { CreateBoardRequest } from './model/create-board.dto';
+import { CreateBoardRequest } from './model/create-board.request';
 
 @Injectable()
 export class BoardsService {
@@ -23,5 +23,9 @@ export class BoardsService {
 
     this.boards.push(board);
     return board;
+  }
+
+  getBoardById(id: string): Board {
+    return this.boards.find((board) => board.id === id);
   }
 }
