@@ -8,6 +8,8 @@ import {
   Param,
   Patch,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Board, BoardStatus } from './model/boards.model';
@@ -15,7 +17,7 @@ import { CreateBoardRequest } from './model/create-board.request';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(private boardsService: BoardsService) { }
+  constructor(private boardsService: BoardsService) {}
 
   @Get('/')
   getAllBoards(): Board[] {
@@ -24,6 +26,7 @@ export class BoardsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
+  @UsePipes(ValidationPipe)
   createBoard(@Body() body: CreateBoardRequest): Board {
     return this.boardsService.createBoard(body);
   }
