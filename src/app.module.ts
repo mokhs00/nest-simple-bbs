@@ -4,4 +4,4 @@ import { BoardsModule } from './boards/boards.module';
 @Module({
   imports: [BoardsModule],
 })
-export class AppModule { }
+export class AppModule {}
