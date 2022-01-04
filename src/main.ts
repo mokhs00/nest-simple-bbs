@@ -10,10 +10,6 @@ async function bootstrap() {
 
   const port = serverConfig.port || 3000;
   await app.listen(port);
-
-  // config 모듈의 NODE_ENV default value는 development. local.EXT 가 있을 시 local이 마지막으로 로드되니 주의
-
-  logger.log(`profile : ${process.env.NODE_ENV || 'development'}`);
   logger.log(`Application running on port : ${port}`);
 }
 bootstrap();
