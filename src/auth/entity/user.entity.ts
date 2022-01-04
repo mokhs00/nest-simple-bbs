@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,
   Column,
@@ -17,4 +18,9 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  async validatePassword(rawpassword: string): Promise<boolean> {
+    const isValid = await bcrypt.compare(rawpassword, this.password);
+    return isValid;
+  }
 }

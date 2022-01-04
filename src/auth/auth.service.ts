@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as bcrypt from 'bcrypt';
 import { User } from './entity/user.entity';
 import { SignUpRequest } from './model/create-user.request';
 import { LoginRequest } from './model/login.request';
@@ -34,8 +33,8 @@ export class AuthService {
       );
     }
 
-    if (!bcrypt.compareSync(password, user.password)) {
-      throw new UnauthorizedException('login failed');
+    if (!(await user.validatePassword(password))) {
+      throw new UnauthorizedException();
     }
 
     const payload = { username };
