@@ -1,0 +1,7 @@
+db:
+  type: sqlite
+  database: boards_app
+  synchronize: true
+
+jwt:
+  secret: Secret-key-dev

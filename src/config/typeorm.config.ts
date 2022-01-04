@@ -1,8 +1,11 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as config from 'config';
+
+const dbConfig = config.get('db');
 
 export const typeORMConfig: TypeOrmModuleOptions = {
-  type: 'sqlite',
-  database: 'boards_app',
+  type: dbConfig.type,
+  database: process.env.DB_NAME || dbConfig.database,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: true,
+  synchronize: dbConfig.synchronize,
 };

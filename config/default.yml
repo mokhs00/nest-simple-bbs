@@ -1,0 +1,10 @@
+server:
+  port: 3000
+
+db:
+  type: sqlite
+  port:
+  database: boards_app
+
+jwt:
+  expiresIn: 604800
